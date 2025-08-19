@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome - Web based security toolkit</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+    body {
+      background: linear-gradient(135deg, #0f2027, #2c5364);
+      color: #e0e0e0;
+      min-height: 100vh;
+      position: relative;
+    }
+    .cyber-hero-bg {
+      position: fixed;
+      top: 0; left: 0; width: 100vw; height: 100vh;
+      z-index: 0;
+      pointer-events: none;
+      background:
+        repeating-linear-gradient(90deg, rgba(0,255,231,0.07) 0 2px, transparent 2px 40px),
+        repeating-linear-gradient(0deg, rgba(0,255,231,0.07) 0 2px, transparent 2px 40px);
+      animation: cyberGridMove 8s linear infinite;
+    }
+    @keyframes cyberGridMove {
+      0% { background-position: 0 0, 0 0; }
+      100% { background-position: 40px 40px, 40px 40px; }
+    }
+        .navbar {
+            background: #11192a !important;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        }
+        .navbar-brand, .nav-link {
+            color: #00ffe7 !important;
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
+        .nav-link:hover {
+            color: #00b894 !important;
+        }
+    .cyber-card {
+      background: rgba(20, 34, 51, 0.55);
+      border-radius: 18px;
+      box-shadow: 0 8px 32px 0 rgba(0,255,231,0.10);
+      padding: 3.5rem 2.5rem;
+      margin-top: 5vh;
+      max-width: 650px;
+      min-height: 420px;
+      margin-left: auto;
+      margin-right: auto;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1.5px solid rgba(0,255,231,0.18);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+        .cyber-icon {
+            font-size: 3rem;
+            color: #22dac5;
+            margin-bottom: 1rem;
+        }
+        h1 {
+            color: #00ffe7;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        p {
+            color: #b2bec3;
+        }
+        .btn-cyber {
+            background: #00ffe7;            
+            color: #11192a;
+            border: none;
+            font-weight: 600;
+            transition: background 0.2s, color 0.2s;
+        }
+        .btn-cyber:hover {
+            background: #a8b4b1;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#"><i class="fas fa-shield-alt"></i> Intelligent Portal</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('scanner_dashboard') }}"><i class="fas fa-search"></i> URL Scanner Dashboard</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('malware_dashboard') }}"><i class="fas fa-bug"></i> Malware Analysis Dashboard</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+  <div class="cyber-hero-bg"></div>
+  <div class="container mt-5" style="position:relative;z-index:1;">
+    <div class="text-center mb-2">
+      <span class="cyber-icon" style="font-size:3.5rem;display:inline-block;"><i class="fas fa-user-secret"></i></span>
+    </div>
+    <h2 class="text-center mb-5" style="color:#00ffe7;font-size:2.2rem;font-weight:800;letter-spacing:1px;">Welcome to the Intelligent Toolkit</h2>
+    <div class="row justify-content-center align-items-stretch g-4 flex-wrap">
+      <div class="col-12 col-lg-6 d-flex">
+        <div class="cyber-card text-center w-100 animate__animated animate__fadeIn d-flex flex-column justify-content-center">
+          <!-- Removed duplicate icon for cleaner look -->
+          <h2 class="text-center mb-2" style="color:#00ffe7;font-size:2.2rem;font-weight:800;letter-spacing:1px;">Start Exploring !!</h2>
+          <p class="text-center mb-4" style="color:#b2bec3;font-size:1.1rem;font-style:italic;max-width:420px;margin:0 auto;">"Security is not a product, but a process."</p>
+          <p>Use the navigation bar above to choose between the URL Scanner and Malware Analysis Dashboard.<br>
+          Stay safe in the cyber world!</p>
+          <div class="d-flex justify-content-center gap-3 mt-4">
+            <a href="{{ url_for('scanner_dashboard') }}" class="btn btn-cyber btn-lg"><i class="fas fa-search"></i> URL Scanner</a>
+            <a href="{{ url_for('malware_dashboard') }}" class="btn btn-cyber btn-lg"><i class="fas fa-bug"></i> Malware Analysis</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-lg-6 d-flex">
+       <div class="cyber-card text-center w-100 d-flex flex-column justify-content-center" style="background:rgba(20,34,51,0.90);">
+  <h2 class="text-center mb-2" style="color:#00ffe7;font-size:2.2rem;font-weight:800;letter-spacing:1px;">Current &amp; Upcoming Features</h2>
+  <p class="mb-3" style="margin-top:1.2rem; font-size:1.18rem;"><strong>Here’s what’s available now and what’s being developed next:</strong></p>
+  <ul style="list-style:none; padding:0; color:#b2bec3; text-align:left; max-width:480px; margin:1.5rem auto 0 auto; line-height:2.1;">
+    <li><strong>URL Scanner</strong> – Detect malicious links, URLs &amp; assess the webpage</li>
+    <li> Generate detailed reports from URL scans</li>
+    <li> <strong>Malware Analysis Dashboard</strong> – <i>In progress</i>: file scanning with hash &amp; rule (YARA)-based detection</li>
+    <li> <strong>Threat Intelligence Integration</strong> - <i>In progress</i></li>
+  </ul>
+</div>
+
+      </div>
+    </div>
+  </div>
+
+    <!-- Footer -->
+    <footer class="mt-5 text-center" style="color:#b2bec3;font-size:1rem; padding:2rem 0;">
+         <p class="mb-3">This project is developed by an <strong>undergraduate student</strong> and is currently in its <strong>initial stage</strong>.<br>
+        While it’s still evolving, the toolkit is already in a <strong>usable mode</strong>.<br>
+        Connect with me on <a href="https://www.linkedin.com/in/raahim-mahmooth" target="_blank" style="color:#00ffe7;text-decoration:underline;font-weight:600;">LinkedIn</a>.
+        </p>
+      Version: 0.1 (Initial Stage)<br>
+      Developed </span> by <strong>Raahim Mahmooth</strong> | Undergraduate Cybersecurity Student | SLIIT<br>
+      
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

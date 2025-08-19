@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>URL Scanner Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&display=swap" rel="stylesheet">
+  <style>
+    body {
+      min-height: 100vh;
+      background: #0f2027; /* fallback for old browsers */
+      background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
+      font-family: 'Montserrat', Arial, sans-serif;
+      color: #fff;
+      position: relative;
+      overflow-x: hidden;
+    }
+    .cyber-grid {
+      position: fixed;
+      top: 0; left: 0; width: 100vw; height: 100vh;
+      z-index: 0;
+      pointer-events: none;
+      background: repeating-linear-gradient(90deg, rgba(0,255,255,0.07) 0 2px, transparent 2px 40px),
+                  repeating-linear-gradient(180deg, rgba(0,255,255,0.07) 0 2px, transparent 2px 40px);
+      animation: gridmove 8s linear infinite;
+    }
+    @keyframes gridmove {
+      0% { background-position: 0 0, 0 0; }
+      100% { background-position: 40px 40px, 40px 40px; }
+    }
+    .glass-card {
+      background: rgba(20, 40, 60, 0.80);
+      border-radius: 1.5rem;
+      box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.22);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 2.5px solid rgba(0,255,255,0.22);
+      padding: 3.2rem 3.2rem 2.7rem 3.2rem;
+      margin: 3.5rem auto 2.5rem auto;
+      max-width: 700px;
+      z-index: 1;
+    }
+    .main-heading {
+      color: #00ffe7;
+      font-size: 2.2rem;
+      font-weight: 900;
+      letter-spacing: 1px;
+      text-align: center;
+      margin-bottom: 0.7rem;
+      font-family: 'Montserrat', Arial, sans-serif;
+    }
+    .sub-heading {
+      color: #fff;
+      font-size: 1.18rem;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 1.5rem;
+      margin-top: 1.2rem;
+    }
+    .feature-list {
+      list-style: none;
+      padding: 0;
+      color: #b2bec3;
+      text-align: left;
+      max-width: 480px;
+      margin: 1.5rem auto 0 auto;
+      line-height: 2.1;
+      font-size: 1.08rem;
+    }
+    .feature-list li {
+      margin-bottom: 0.7rem;
+      display: flex;
+      align-items: flex-start;
+    }
+    .feature-list i {
+      color: #00ffe7;
+      margin-right: 0.7rem;
+      font-size: 1.1rem;
+      margin-top: 0.2rem;
+    }
+    .advanced-heading {
+      color: #00ffe7;
+      font-size: 1.35rem;
+      font-weight: 800;
+      margin-top: 2.5rem;
+      margin-bottom: 0.7rem;
+      text-align: center;
+      letter-spacing: 0.5px;
+    }
+    .footer {
+      text-align: center;
+      color: #b2bec3;
+      font-size: 0.98rem;
+      margin-top: 2.5rem;
+      margin-bottom: 1.2rem;
+      z-index: 2;
+      position: relative;
+    }
+  </style>
+</head>
+<body>
+  <div class="cyber-grid"></div>
+  <div class="container position-relative" style="z-index:1;">
+    <div class="glass-card mt-5">
+      <div class="main-heading">URL Scanner Dashboard</div>
+      <div class="sub-heading"><strong>Scan URLs for threats and view your analysis reports</strong></div>
+      <form id="scan-form" method="post" action="/scan" class="mb-4 d-flex flex-column flex-md-row justify-content-center align-items-center gap-3">
+        <input name="url" class="form-control" placeholder="https://example.com" style="max-width:400px; min-width:220px;" required>
+        <button type="submit" class="btn btn-cyan fw-bold" style="background:#00ffe7;color:#222;box-shadow:0 2px 8px #00ffe7a0;">Scan</button>
+      </form>
+  
+      <h2 class="main-heading" style="font-size:1.45rem; margin-top:2.2rem; margin-bottom:0.7rem;">Past Reports</h2>
+      <ul class="feature-list">
+        {% for r in reports %}
+          <li><i class="fa-solid fa-file-shield"></i><a href="/reports/{{ r }}.html" style="color:#00ffe7; text-decoration:underline;">{{ r }}</a></li>
+        {% else %}
+          <li>No reports yet</li>
+        {% endfor %}
+      </ul>
+      <div class="advanced-heading">Upcoming Advanced Features</div>
+      <ul class="feature-list">
+        <li><i class="fa-solid fa-shield-halved"></i>SSL/TLS Certificate Analysis</li>
+        <li><i class="fa-solid fa-file-export"></i>Export Options (PDF, CSV, JSON)</li>
+        <li><i class="fa-solid fa-bolt"></i>Real-Time Monitoring</li>
+        <li><i class="fa-solid fa-brain"></i>Machine Learning / Deep Learning Analysis</li>
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; 2025 Raahim Mahmooth &mdash; Secure Web Toolkit
+    </div>
+  </div>
+</body>
+</html>
