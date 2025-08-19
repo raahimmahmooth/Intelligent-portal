@@ -1,2 +1,2 @@
 # Intelligent-portal
-A web based Cyber threat intelligent tool kit
+A web based Cyber threat analysis tool kit
