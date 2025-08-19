@@ -1,2 +1,10 @@
 flask
 gunicorn
+requests
+bs4
+tldextract
+whois
+python-dotenv
+pyppeteer
+idna
+soupsieve
