@@ -239,10 +239,21 @@ def whois_info(domain):
 
 
 def save_report(data, safe_ts):
+    import base64
     filename = f'scan_{safe_ts}'
     json_path = os.path.join(STORE_REPORT, f"{filename}.json")
     with open(json_path, 'w') as f:
         json.dump(data, f, indent=2)
+
+    # Embed snapshot as base64 in HTML report
+    if data.get('snapshot'):
+        img_path = os.path.join(STORE_REPORT, 'snapshots', f'{safe_ts}.png')
+        if os.path.exists(img_path):
+            with open(img_path, 'rb') as img_file:
+                img_b64 = base64.b64encode(img_file.read()).decode('utf-8')
+            data['snapshot'] = f"data:image/png;base64,{img_b64}"
+        else:
+            data['snapshot'] = None
 
     html_path = os.path.join(STORE_REPORT, f"{filename}.html")
     with open(html_path, 'w') as f:

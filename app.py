@@ -3,6 +3,7 @@ import asyncio
 from flask import Flask, render_template, request, redirect, url_for, send_from_directory
 import os
 from datetime import datetime
+import uuid
 
 from scanner import (
     STORE_REPORT,
@@ -57,7 +58,7 @@ def scan():
     url = request.form.get("url")
     if not url:
         return redirect(url_for("scanner_dashboard"))
-    safe_ts = datetime.utcnow().strftime('%Y%m%d_%H%M%S')
+    unique_id = str(uuid.uuid4())
     html, final_url, status, headers, encoding, elapsed, redirect_history, content_length = fetch_url_content(url)
 
     domain = get_domain(final_url or url)
@@ -72,7 +73,7 @@ def scan():
 
     data = {
         "timestamp": datetime.utcnow().isoformat(),
-    "scan_date": datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+        "scan_date": datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
         "original_url": url,
         "final_url": final_url,
         "domain": domain,
@@ -93,6 +94,8 @@ def scan():
         "content_length": content_length,
     }
 
+    # ...existing code...
+
     # Capture snapshot first
     try:
         loop = asyncio.get_event_loop()
@@ -100,14 +103,30 @@ def scan():
         loop = asyncio.new_event_loop()
         asyncio.set_event_loop(loop)
 
-    snapshot_path = loop.run_until_complete(capture_snapshot(final_url or url, safe_ts))
-    if snapshot_path:
-        data["snapshot"] = snapshot_path
+    snapshot_path = loop.run_until_complete(capture_snapshot(final_url or url, unique_id))
+    # Always set snapshot path to Flask route, regardless of what capture_snapshot returns
+    data["snapshot"] = f"/reports/snapshots/{unique_id}.png"
 
     # Save report once, after snapshot
-    report_id = save_report(data, safe_ts)
+    report_id = save_report(data, unique_id)
 
-    return redirect(url_for("report", report_id=report_id))
+    # Automatic cleanup: delete all previous reports and snapshots except the current one
+    for fname in os.listdir(STORE_REPORT):
+        if (fname.endswith('.html') or fname.endswith('.json')) and not fname.startswith(f'scan_{unique_id}'):
+            try:
+                os.remove(os.path.join(STORE_REPORT, fname))
+            except Exception:
+                pass
+    snapshot_dir = os.path.join(STORE_REPORT, "snapshots")
+    if os.path.exists(snapshot_dir):
+        for fname in os.listdir(snapshot_dir):
+            if fname != f'{unique_id}.png':
+                try:
+                    os.remove(os.path.join(snapshot_dir, fname))
+                except Exception:
+                    pass
+
+    return redirect(url_for("report_ready", report_id=report_id))
 
 #@app.route("/reports/<report_id>.json")
 #def get_report_json(report_id):
@@ -127,6 +146,15 @@ def report(report_id):
 @app.route("/reports/snapshots/<filename>")
 def report_snapshot(filename):
     return send_from_directory(os.path.join(STORE_REPORT, "snapshots"), filename)
+
+
+# New route for stateless report ready page
+@app.route("/report_ready/<report_id>")
+def report_ready(report_id):
+    path = os.path.join(STORE_REPORT, f"{report_id}.html")
+    if not os.path.exists(path):
+        return "Not found", 404
+    return render_template("report_ready.html", report_id=report_id)
 
 if __name__ == "__main__":
     app.run(debug=True)

@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Your Scan Report</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&display=swap" rel="stylesheet">
+  <style>
+    body {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
+      font-family: 'Montserrat', Arial, sans-serif;
+      color: #fff;
+      position: relative;
+      overflow-x: hidden;
+    }
+    .glass-card {
+      background: rgba(20, 40, 60, 0.80);
+      border-radius: 1.5rem;
+      box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.22);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 2.5px solid rgba(0,255,255,0.22);
+      padding: 3.2rem 3.2rem 2.7rem 3.2rem;
+      margin: 3.5rem auto 2.5rem auto;
+      max-width: 700px;
+      z-index: 1;
+      text-align: center;
+    }
+    .main-heading {
+      color: #00ffe7;
+      font-size: 2.2rem;
+      font-weight: 900;
+      letter-spacing: 1px;
+      margin-bottom: 1.2rem;
+      font-family: 'Montserrat', Arial, sans-serif;
+    }
+    .btn-download {
+      background:#00ffe7;
+      color:#222;
+      font-weight:700;
+      box-shadow:0 2px 8px #00ffe7a0;
+      margin-top: 2rem;
+      padding: 0.8rem 2.2rem;
+      border-radius: 0.7rem;
+      font-size: 1.2rem;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .footer {
+      text-align: center;
+      color: #b2bec3;
+      font-size: 0.98rem;
+      margin-top: 2.5rem;
+      margin-bottom: 1.2rem;
+      z-index: 2;
+      position: relative;
+    }
+  </style>
+</head>
+<body>
+  <div class="container position-relative" style="z-index:1;">
+    <div class="glass-card mt-5">
+      <div class="main-heading">Your Scan Report is Ready!</div>
+      <p>You can download your report below. Please save the link if you want to access it again.</p>
+      <a href="{{ url_for('report', report_id=report_id) }}" class="btn btn-download" download><i class="fa fa-download"></i> Download Report</a>
+    </div>
+    <div class="footer">
+      &copy; 2025 Raahim Mahmooth &mdash; Secure Web Toolkit
+    </div>
+  </div>
+</body>
+</html>
