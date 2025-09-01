@@ -14,7 +14,7 @@ A **web-based security toolkit** designed to assist in **threat intelligence, UR
 - Extracts WHOIS information, domain names, IP addresses, and subdomains.  
 - Performs HTML analysis for suspicious keywords.  
 - Generates an **intelligent safety score** (Harmless / Suspicious / Malicious).  
-- Provides interactive reports and maintains historical logs.  
+- Provides interactive reports 
 
 ### 🦠 Malware Analysis Dashboard *(In Progress)*
 - Rule-based malware detection using **YARA rules**.  
