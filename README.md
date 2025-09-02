@@ -1,46 +1,76 @@
-# Web-Based Security Toolkit (intelligent portal)
+# 🔐 Secure Web Toolkit (Intelligent Portal)
 
-A **web-based security toolkit** designed to assist in **threat intelligence, URL scanning, and malware analysis** through an interactive dashboard and intelligent reporting system.
+A **web-based cybersecurity toolkit** designed to support **threat intelligence, phishing URL analysis, and malware detection**.  
+The platform provides an interactive dashboard and generates detailed security reports to aid analysts in evaluating potential threats.  
+
+---
 
 ## 🚀 Features
 
 ### 🔗 URL Scanner Dashboard
-- Scans and analyzes submitted URLs.
-- Integrates multiple threat intelligence sources:
+- Scans and analyzes user-submitted URLs.  
+- Integrates multiple threat intelligence sources:  
   - [VirusTotal](https://www.virustotal.com/)  
   - [Google Safe Browsing](https://safebrowsing.google.com/)  
-  - [Cisco Talos Intelligence](https://talosintelligence.com/)  
-  - [MalwareBazaar](https://bazaar.abuse.ch/)  
-- Extracts WHOIS information, domain names, IP addresses, and subdomains.  
-- Performs HTML analysis for suspicious keywords.  
-- Generates an **intelligent safety score** (Harmless / Suspicious / Malicious).  
-- Provides interactive reports 
+  - WHOIS information  
+  - Subdomain enumeration  
+- Performs **HTML and script inspection** for suspicious keywords.  
+- Captures **automated website snapshots** for visual verification.  
+- Generates an **intelligent risk score** (*Likely Safe · Suspicious · Malicious*).  
+- Produces **interactive, downloadable reports** with embedded screenshots.  
 
 ### 🦠 Malware Analysis Dashboard *(In Progress)*
-- Rule-based malware detection using **YARA rules**.  
-- Hash-based malware detection (MD5, SHA1, SHA256).  
-- Planned integration with **MalwareBazaar** for known malware samples.  
-- Intelligent malware reports with real-time analysis.  
+- **Hash-based detection** (MD5, SHA1, SHA256) with planned integration of [MalwareBazaar](https://bazaar.abuse.ch/).  
+- **Rule-based detection** using **YARA rules** for malware pattern and IOC matching.  
+- Planned capabilities for static analysis: file headers, imports/exports, embedded strings.  
+- Interactive malware reporting for clear visibility of findings.  
+
+---
 
 ## 🛠️ Tech Stack
-- **Frontend:** Interactive UI-based dashboard (Flask + HTML/CSS/JS)  
-- **Backend:** Python  
-- **APIs:** VirusTotal, Google Safe Browsing, Cisco Talos, MalwareBazaar  
-- **Threat Intelligence:** WHOIS, Subdomain Enumeration, YARA  
+- **Backend:** Python (Flask)  
+- **Frontend:** HTML · CSS · Bootstrap (cyber-styled UI)  
+- **APIs & Integrations:** VirusTotal API · Google Safe Browsing API · WHOIS · (Planned: MalwareBazaar)  
+- **Threat Intelligence:** Subdomain Enumeration · HTML Analysis · YARA Rules  
+
+---
 
 ## 📊 Reports
-- Interactive security reports available through the dashboard.  
-- Option to view past reports for deeper investigation.  
+- Automatically generated **interactive reports** via the dashboard.  
+- Includes:  
+  - Domain & IP information  
+  - WHOIS details  
+  - Threat intelligence results  
+  - Subdomains  
+  - Risk scoring  
+  - Website snapshots  
+- Downloadable in **HTML format** for offline use.  
+
+---
 
 ## 📂 Project Status
-- ✅ URL Scanner Dashboard – Completed  
-- 🔄 Malware Analysis Dashboard – In Progress  
+- ✅ **URL Scanner Dashboard** – Completed and deployed  
+- 🔄 **Malware Analysis Dashboard** – In progress  
 
-## 📌 Future Enhancements
-- Advanced malware sandboxing  
-- More threat intel API integrations  
-- Exportable PDF/CSV reports  
+---
+
+## 📌 Roadmap / Future Enhancements
+- Advanced malware sandboxing for behavioral analysis.  
+- Integration with additional threat intelligence APIs (e.g., Cisco Talos, AbuseIPDB).  
+- Exportable **PDF/CSV reports**.  
+- User authentication with saved report history.  
+
+---
+
+## 🌐 Live Demo
+🔗 [Secure Web Toolkit](https://web-production-6aa3.up.railway.app)  
+
+---
 
 ## 👨‍💻 Author
 Developed by **[Raahim Mahmooth](https://www.linkedin.com/in/raahim-mahmooth/)**  
-[GitHub Repository Link](https://github.com/raahimmahmooth/Intelligent-portal)
+Undergraduate Cybersecurity Student | SLIIT  
+
+**GitHub Repository:** *(to be added once public)*  
+
+---
