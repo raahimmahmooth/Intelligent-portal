@@ -71,6 +71,6 @@ The platform provides an interactive dashboard and generates detailed security r
 Developed by **[Raahim Mahmooth](https://www.linkedin.com/in/raahim-mahmooth/)**  
 Undergraduate Cybersecurity Student | SLIIT  
 
-**GitHub Repository:** *(to be added once public)*  
+
 
 ---
